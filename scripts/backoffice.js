@@ -24,8 +24,8 @@ const caricaProdotti = function () {
             <p><strong>${p.brand}</strong> - €${p.price}</p>
             <img src="${p.imageUrl}" width="100" />
             <br />
-            <button onclick="editProduct('${p._id}')">Modifica</button>
-            <button onclick="removeProduct('${p._id}')">Elimina</button>
+            <button onclick="modificaProdotto('${p._id}')">Modifica</button>
+            <button onclick="eliminaProdotto('${p._id}')">Elimina</button>
           </div>`
         )
         .join("");
@@ -92,7 +92,7 @@ resetBtn.addEventListener("click", function () {
 });
 
 // Modifica prodotto
-function editProduct(id) {
+const modificaProdotto = function (id) {
   fetch(API_URL + id, { headers: { Authorization: TOKEN } })
     .then((res) => res.json())
     .then((product) => {
@@ -108,7 +108,7 @@ function editProduct(id) {
 }
 
 // Elimina prodotto
-function removeProduct(id) {
+const eliminaProdotto = function (id) {
   if (!confirm("Vuoi davvero eliminare questo prodotto?")) return;
 
   fetch(API_URL + id, {
